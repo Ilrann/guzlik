@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 import time
 import sqlite3
+import random
 
 db = sqlite3.connect('database.db', check_same_thread=False)
 
@@ -73,9 +74,9 @@ questions = {
          "answers": ["Германия", "Франция", "Италия", "Великобритания"], "correct_answer": 0},
         {"question": "Какое озеро считается самым глубоким в Европе?", "answers": ["Балхаш", "Каспийское", "Онежское", "Байкал"],
          "correct_answer": 3},
-        {"question": "В какой стране находится город-государство Монако?",
+        {"question": "Внутри какой страны находится город-государство Монако?",
          "answers": ["Испания", "Франция", "Италия", "Бельгия"], "correct_answer": 1},
-        {"question": "Какая горная система простирается через большую часть России и Казахстана?",
+        {"question": "Какая горная система простирается через большую часть России?",
          "answers": ["Альпы", "Уральские горы", "Гималаи", "Анды"], "correct_answer": 1},
     ],
      "Сложные вопросы о географии Европы": [
@@ -155,8 +156,9 @@ def send_next_question(chat_id, user_id):
         current_question = results[user_id]["current_question"]
 
         if current_section in questions and 0 <= current_question < len(questions[current_section]):
-            question = questions[current_section][current_question]["question"]
-            answers = questions[current_section][current_question]["answers"]
+            numbr = random.randint(0,9)
+            question = questions[current_section][numbr]["question"]
+            answers = questions[current_section][numbr]["answers"]
 
             markup = types.InlineKeyboardMarkup()
             for i, answer in enumerate(answers):
