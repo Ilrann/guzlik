@@ -78,6 +78,8 @@ questions = {
          "answers": ["Испания", "Франция", "Италия", "Бельгия"], "correct_answer": 1},
         {"question": "Какая горная система простирается через большую часть России?",
          "answers": ["Альпы", "Уральские горы", "Гималаи", "Анды"], "correct_answer": 1},
+        {"question": "Какой из европейских языков является самым распространённым мире?",
+         "answers": ["испанский", "английский", "французский", "итальянский"], "correct_answer": 1},
     ],
      "Сложные вопросы о географии Европы": [
         {"question": "Какое море находится между Грецией и Турцией?",
@@ -156,7 +158,7 @@ def send_next_question(chat_id, user_id):
         current_question = results[user_id]["current_question"]
 
         if current_section in questions and 0 <= current_question < len(questions[current_section]):
-            numbr = random.randint(0,9)
+            numbr = random.randint(0,len(current_section))
             question = questions[current_section][numbr]["question"]
             answers = questions[current_section][numbr]["answers"]
 
